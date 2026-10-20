@@ -26,8 +26,8 @@ Points d'entrée :
 
 1. `index.html` charge d'abord `branding.js` (en `<head>` : pose les couleurs en variables CSS `--brand-*`), puis les libs, les modules `bkcore.*`, `HexGL.js`, et enfin `launch.js`.
 2. `launch.js` rappelle `bkcore.Branding.apply(document)` (DOM prêt : logo, message d'accueil, libellés du bouton et des crédits) et construit le menu à partir du tableau `s` (controlType, quality, hud, godmode), dont libellés et valeurs viennent de `bkcore.Branding.menu`. Chaque valeur initiale vient du paramètre d'URL du même nom (`bkcore.Utils.getURLParameter`) sinon d'une valeur par défaut (contrôle tactile si `isTouchDevice()`, qualité 3, HUD 1, godmode 0). Un clic sur une entrée fait avancer la valeur de façon circulaire.
-3. Détection WebGL (`hasWebGL`). Sans WebGL, le bouton Start devient un lien vers `get.webgl.org`.
-4. Clic sur **Start** → `#step-1` masqué, `#step-2` (image d'aide `css/help-<controlType>.png`) affiché.
+3. Détection WebGL (`hasWebGL`). Sans WebGL, le bouton principal affiche `bkcore.Branding.menu.noWebGL` et devient un lien vers `get.webgl.org`.
+4. Clic sur **Démarrer la course** (`#start`) → `#step-1` masqué, `#step-2` (image d'aide `css/help-<controlType>.png`) affiché.
 5. Clic sur `#step-2` → `#step-3` (barre de progression) + `init(...)` : crée `bkcore.hexgl.HexGL` (`track: 'Cityscape'`, `difficulty: 0`), l'expose en `window.hexGL`, appelle `hexGL.load(...)`.
 6. `HexGL.load` → `track.load` → `bkcore.threejs.Loader.load` : charge textures, cubemaps, géométries (JSON Three), « analysers » (PNG de collision et de hauteur lus en pixels), images HUD, sons. Deux listes de ressources selon la qualité (`quality < 2` : matériaux basiques ; sinon : normal maps, spéculaires, cubemap).
 7. `onLoad` → `hexGL.init()` (HUD, `track.buildMaterials`, `track.buildScenes`, composer de rendu) puis `hexGL.start()` : boucle `requestAnimationFrame` (`update` → `gameplay.update` + `manager.renderCurrent`) et `initGameplay()` (création de `Gameplay`, `start`, audio `bg` et `wind`).
