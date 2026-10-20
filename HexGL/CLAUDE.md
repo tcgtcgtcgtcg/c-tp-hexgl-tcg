@@ -10,7 +10,7 @@ Description du projet : `docs/architecture.md`.
 
 ## Captures de référence
 - `formation/tests/captures/01-accueil.png` (menu) et `02-jeu-en-cours.png` (course après le « GO »), 1280x720, Chrome headless (SwiftShader).
-- `02-jeu-en-cours.png` faite le 2026-10-20 avant refactoring (non refaite depuis). `01-accueil.png` = accueil ACME ; `01-accueil-avant.png` = accueil d'origine (branding HexGL).
+- `02-jeu-en-cours.png` faite le 2026-10-20 avant refactoring ; recapturée après le branding : course et HUD identiques (écart moyen ≈ 6/765 par pixel hors chrono), donc conservée telle quelle. `01-accueil.png` = accueil ACME ; `01-accueil-avant.png` = accueil d'origine (branding HexGL).
 - Pour les refaire : servir `HexGL/` en statique (ex. `npx http-server -p 8080`), piloter Chrome headless avec `--remote-debugging-port` (clic sur `#start`, puis `#step-2`, attendre `#step-4` visible + ~9 s). Le script utilisé n'est pas conservé dans le dépôt.
 
 ## Branding (accueil)
