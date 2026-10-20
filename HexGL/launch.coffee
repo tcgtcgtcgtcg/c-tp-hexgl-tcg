@@ -33,15 +33,16 @@ init = (controlType, quality, hud, godmode) ->
   )
 
 u = bkcore.Utils.getURLParameter
+B = bkcore.Branding
+B.apply document
 
 defaultControls = if bkcore.Utils.isTouchDevice() then 1 else 0
 
 s = [
-  ['controlType', ['KEYBOARD', 'TOUCH', 'LEAP MOTION CONTROLLER',
-    'GAMEPAD'], defaultControls, defaultControls, 'Controls: ']
-  ['quality', ['LOW', 'MID', 'HIGH', 'VERY HIGH'], 3, 3, 'Quality: ']
-  ['hud', ['OFF', 'ON'], 1, 1, 'HUD: ']
-  ['godmode', ['OFF', 'ON'], 0, 1, 'Godmode: ']
+  ['controlType', B.menu.controlType.values, defaultControls, defaultControls, B.menu.controlType.label]
+  ['quality', B.menu.quality.values, 3, 3, B.menu.quality.label]
+  ['hud', B.menu.hud.values, 1, 1, B.menu.hud.label]
+  ['godmode', B.menu.godmode.values, 0, 1, B.menu.godmode.label]
 ]
 
 for a in s
@@ -75,7 +76,7 @@ hasWebGL = ->
 
 if not hasWebGL()
   getWebGL = $('start')
-  getWebGL.innerHTML = 'WebGL is not supported!'
+  getWebGL.innerHTML = B.menu.noWebGL
   getWebGL.onclick = ->
     window.location.href = 'http://get.webgl.org/'
 else
